@@ -1,13 +1,13 @@
 # README
 
-## chat_groupsテーブル
+## groupsテーブル
 
 |Column|Type|Option|
 |------|----|------|
 |group|string|null: false, foreign_key: true|
 --------------------
 # Association
-- has many :chat_groups, through: :groups_users
+- has many :users, through: :groups_users
 - has many :messages
 
 ## usersテーブル
@@ -19,7 +19,7 @@
 |user_password|string|foreign_key: true|
 --------------------
 # Association
-- has_many :chat_groups :through: :groups_users
+- has_many :groups :through: :groups_users
 - has many :messages
 
 ## messagesテーブル
