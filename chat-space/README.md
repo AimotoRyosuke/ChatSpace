@@ -33,7 +33,7 @@
 --------------------
 # Association
 - belongs_to :user
-- belongs_to :chat
+- belongs_to :group
 
 ## groups_usersテーブル
 
