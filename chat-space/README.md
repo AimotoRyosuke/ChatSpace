@@ -1,7 +1,5 @@
 # README
 
-# README
-
 ## chat_groupsテーブル
 
 |Column|Type|Option|
