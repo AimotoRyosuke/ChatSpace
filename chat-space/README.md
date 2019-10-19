@@ -4,7 +4,7 @@
 
 |Column|Type|Option|
 |------|----|------|
-|group|string|null: false, foreign_key: true|
+|name|string|null: false, foreign_key: true|
 --------------------
 # Association
 - has_many :users, through: :groups_users
@@ -16,12 +16,10 @@
 |Column|Type|Option|
 |------|----|------|
 |name|string|null: false|
-|email|string|null: false, foreign_key: true|
-|user_password|string|foreign_key: true|
 --------------------
 # Association
 - has_many :groups :through: :groups_users
-- has many :messages
+- has_many :messages
 
 ## messagesテーブル
 
