@@ -17,21 +17,21 @@
       %li.group-field__member-list__text Member：
       %li.group-field__member-list__member User1
       %li.group-field__member-list__member User2
-      %a.group-field__edit(href="#") Edit
+      = link_to "Edit", "#", class: "group-field__edit"
   .contents
     .group-list
       .group-list__group
         %p.group-list__group__name test-group
         %p.group-list__group__message さようなら
-        %a(href="#")
+        = link_to ""
       .group-list__group
         %p.group-list__group__name sample-group
         %p.group-list__group__message hello!
-        %a(href="#")
+        = link_to ""
       .group-list__group
         %p.group-list__group__name example
         %p.group-list__group__message まだメッセージがありません
-        %a(href="#")
+        = link_to ""
     .right-contents
       %ul.message-list
         %li.message-list__message
