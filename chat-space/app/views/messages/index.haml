@@ -1,0 +1,51 @@
+%body
+  .maked-group 
+    %p グループを作成しました
+  %header.header
+    .user-field
+      .user-field__name test-user
+      .user-field__box
+        .user-field__box__icon
+          = link_to "#" do
+            = fa_icon 'cog'
+        .user-field__box__icon
+          = link_to "#" do
+            = fa_icon 'edit'
+    .group-field
+      .group-field__name test group
+      %ul.group-field__member-list__group
+      %li.group-field__member-list__text Member：
+      %li.group-field__member-list__member User1
+      %li.group-field__member-list__member User2
+      %a.group-field__edit(href="#") Edit
+  .contents
+    .group-list
+      .group-list__group
+        %p.group-list__group__name test-group
+        %p.group-list__group__message さようなら
+        %a(href="#")
+      .group-list__group
+        %p.group-list__group__name sample-group
+        %p.group-list__group__message hello!
+        %a(href="#")
+      .group-list__group
+        %p.group-list__group__name example
+        %p.group-list__group__message まだメッセージがありません
+        %a(href="#")
+    .right-contents
+      %ul.message-list
+        %li.message-list__message
+          %p.message-list__message__user test-user
+          %p.message-list__message__date 2019/02/13(Wed) 17:50:36
+          %p.message-list__message__text こんにちは！
+        %li.message-list__message
+          %p.message-list__message__user test-user
+          %p.message-list__message__date 2019/02/13(Wed) 17:50:42
+          %p.message-list__message__text さようなら
+      .send-box
+        %form.send-box__form{action: "/", method: "post", }
+          %input.send-box__form__input-form{type: "text", placeholder: "type a message"}
+          %label.send-box__form__upload-label{for: "upload-icon"}
+            %i.fa.fa-image
+          %input.send-box__form__file-select{type: "file", id: "upload-icon"}
+          %input.send-box__form__submit-btn{type: "submit", value: "Send", onclick: "location.href='.'"}
