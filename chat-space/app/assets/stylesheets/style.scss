@@ -6,20 +6,14 @@ body {
   padding: 0;
 }
 
-.maked-group {
-  color: #fff;
-  background-color: #38aef0;
-  width: 100%;
-  text-align: center;
-  position: fixed;
-}
+
 
 .header {
   height: 100px;
   position: fixed;
-  top: 24px;
   width: 100%;
   display: flex;
+  z-index: 1;
 }
 
 .user-field {
@@ -71,8 +65,8 @@ body {
 }
 
 .contents {
-  height: calc(100% - 124px); 
-  padding-top: 124px;
+  height: calc(100% - 100px); 
+  padding-top: 100px;
   width: 100%;
 }
 
