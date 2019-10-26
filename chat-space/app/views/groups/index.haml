@@ -15,8 +15,8 @@
     .group-list
       - current_user.groups.each do |group|
         .group-list__group
-          %p.group-list__group__name 
-            = group.name
-          %p.group-list__group__message
-            メッセージはまだありません。
-        = link_to ""
+          = link_to group_messages_path(group) do
+            %p.group-list__group__name 
+              = group.name
+            %p.group-list__group__message
+              メッセージはまだありません。

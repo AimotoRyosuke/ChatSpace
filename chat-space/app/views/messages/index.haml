@@ -17,16 +17,16 @@
       %li.group-field__member-list__text Member：
       %li.group-field__member-list__member User1
       %li.group-field__member-list__member User2
-      = link_to "Edit", "#", class: "group-field__edit"
+      = link_to "Edit", edit_group_path(current_user), class: "group-field__edit"
   .contents
     .group-list
       - current_user.groups.each do |group|
         .group-list__group
-          %p.group-list__group__name 
-            = group.name
-          %p.group-list__group__message
-            メッセージはまだありません。
-          = link_to ""
+          = link_to group_messages_path(group) do
+            %p.group-list__group__name 
+              = group.name
+            %p.group-list__group__message
+              メッセージはまだありません。
     .right-contents
       %ul.message-list
         %li.message-list__message
@@ -38,13 +38,6 @@
           %p.message-list__message__date 2019/02/13(Wed) 17:50:42
           %p.message-list__message__text さようなら
       .send-box
-        -# = form_for @group, html: {class: "send-box__form"} do |f|
-        -#   = f.text_area :body, html: {class: "send-box__form__input-form"}
-        -#   %label.send-box__form__upload-label{for: "upload-icon"}
-        -#     = fa_icon 'image'
-        -#   = f.file_field :image, id: "upload-icon", html: {class: "send-box__form__file-select"}
-        -#   = f.submit value: "Send", html: {class: "send-box__form__submit-btn"}
-
         %form.send-box__form{action: "/", method: "post", }
           %input.send-box__form__input-form{type: "text", placeholder: "type a message"}
           %label.send-box__form__upload-label{for: "upload-icon"}
