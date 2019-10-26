@@ -37,10 +37,11 @@
           %p.message-list__message__user test-user
           %p.message-list__message__date 2019/02/13(Wed) 17:50:42
           %p.message-list__message__text さようなら
-      .send-box
-        %form.send-box__form{action: "/", method: "post", }
-          %input.send-box__form__input-form{type: "text", placeholder: "type a message"}
-          %label.send-box__form__upload-label{for: "upload-icon"}
-            %i.fa.fa-image
-          %input.send-box__form__file-select{type: "file", id: "upload-icon"}
-          %input.send-box__form__submit-btn{type: "submit", value: "Send"}
+      = form_for [@group, @message] do |f|
+        .send-box
+          .send-box__form
+            = f.text_field :body, class: 'send-box__form__input-form', placeholder: 'type a message'
+            = f.label :image, class: 'send-box__form__upload-label' do
+              = fa_icon 'picture-o'
+            = f.file_field :image, class: 'hidden send-box__form__file-select'
+            = f.submit 'Send', class: 'send-box__form__submit-btn'
