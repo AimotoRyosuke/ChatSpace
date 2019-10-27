@@ -3,28 +3,35 @@
   %header.header
     = render "share/user-field"
     .group-field
-      .group-field__name test group
+      .group-field__name
+        = @group.name
       %ul.group-field__member-list__group
       %li.group-field__member-list__text Member：
-      %li.group-field__member-list__member User1
-      %li.group-field__member-list__member User2
-      = link_to "Edit", edit_group_path(current_user), class: "group-field__edit"
+      - @group.users.each do |user|
+        %li.group-field__member-list__member
+          = user.name
+      = link_to "Edit", edit_group_path(@group), class: "group-field__edit"
   .contents
+
     = render "share/group-list"
+
     .right-contents
       %ul.message-list
-        %li.message-list__message
-          %p.message-list__message__user test-user
-          %p.message-list__message__date 2019/02/13(Wed) 17:50:36
-          %p.message-list__message__text こんにちは！
-        %li.message-list__message
-          %p.message-list__message__user test-user
-          %p.message-list__message__date 2019/02/13(Wed) 17:50:42
-          %p.message-list__message__text さようなら
-      .send-box
-        %form.send-box__form{action: "/", method: "post", }
-          %input.send-box__form__input-form{type: "text", placeholder: "type a message"}
-          %label.send-box__form__upload-label{for: "upload-icon"}
-            %i.fa.fa-image
-          %input.send-box__form__file-select{type: "file", id: "upload-icon"}
-          %input.send-box__form__submit-btn{type: "submit", value: "Send"}
+        - @group.messages.each do |message|
+          %li.message-list__message
+            %p.message-list__message__user
+              = message.user.name
+            %p.message-list__message__date
+              = message.created_at.strftime("%Y/%m/%d %H:%M")
+            %p.message-list__message__text
+              = message.body
+            = image_tag(message.image) if message.image.present?
+      
+      = form_for [@group, @message] do |f|
+        .send-box
+          .send-box__form
+            = f.text_field :body, class: 'send-box__form__input-form', placeholder: 'type a message'
+            = f.label :image, class: 'send-box__form__upload-label' do
+              = fa_icon 'picture-o'
+            = f.file_field :image, class: 'hidden send-box__form__file-select'
+            = f.submit 'Send', class: 'send-box__form__submit-btn'

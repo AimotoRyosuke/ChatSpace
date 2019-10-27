@@ -32,12 +32,14 @@
   background-color: #2f3e51;
   width: 260px;
   float: left;
-  padding: 20px 20px 26px;
+  padding: 20px 20px 20px;
   color: #fff;
-  overflow: auto;
+  overflow: scroll;
+  -ms-overflow-style: none;
   &__group {
     padding: 0 0 40px;
-    height: 48px;
+    height: auto;
+    margin-bottom: 40px;
     width: 100%;
     position: relative;
     &__name {

@@ -65,7 +65,7 @@ body {
 }
 
 .contents {
-  height: calc(100% - 100px); 
+  height: calc(100vh - 100px); 
   padding-top: 100px;
   width: 100%;
 }
@@ -73,18 +73,22 @@ body {
 .group-list {
   @include group-list;
 }
+.group-list::-webkit-scrollbar {
+  display:none;
+}
 
 .right-contents {
-  height: 100%;
+  height: calc(100% + 40px);
   width: calc(100% - 300px);
   float: left;
 }
 
 .message-list{
-  height: 100%;
+  height: calc(100% - 216px);
   width: calc(100% - 80px);
-  padding:46px 40px 0;
+  padding:46px 40px 40px;
   overflow: auto;
+  -ms-overflow-style: none;
   &__message {
     padding: 0 0 40px;
     &__user {
@@ -105,6 +109,10 @@ body {
       color: #434a54;
     }
   }
+}
+
+.message-list::-webkit-scrollbar {
+  display:none;
 }
 
 
