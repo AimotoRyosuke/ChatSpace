@@ -12,11 +12,13 @@
           = link_to new_group_path do
             = fa_icon 'edit'
     .group-field
-      .group-field__name test group
+      .group-field__name
+        = @group.name
       %ul.group-field__member-list__group
       %li.group-field__member-list__text Member：
-      %li.group-field__member-list__member User1
-      %li.group-field__member-list__member User2
+      - @group.users.each do |user|
+        %li.group-field__member-list__member
+          = user.name
       = link_to "Edit", edit_group_path(@group), class: "group-field__edit"
   .contents
     .group-list
@@ -26,17 +28,19 @@
             %p.group-list__group__name 
               = group.name
             %p.group-list__group__message
-              メッセージはまだありません。
+              = group.show_last_message
     .right-contents
       %ul.message-list
-        %li.message-list__message
-          %p.message-list__message__user test-user
-          %p.message-list__message__date 2019/02/13(Wed) 17:50:36
-          %p.message-list__message__text こんにちは！
-        %li.message-list__message
-          %p.message-list__message__user test-user
-          %p.message-list__message__date 2019/02/13(Wed) 17:50:42
-          %p.message-list__message__text さようなら
+        - @group.messages.each do |message|
+          %li.message-list__message
+            %p.message-list__message__user
+              = message.user.name
+            %p.message-list__message__date
+              = message.created_at.strftime("%Y/%m/%d %H:%M")
+            %p.message-list__message__text
+              = message.body
+            = image_tag(message.image) if message.image.present?
+      
       = form_for [@group, @message] do |f|
         .send-box
           .send-box__form
