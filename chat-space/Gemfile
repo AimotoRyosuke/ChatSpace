@@ -71,3 +71,7 @@ gem 'mini_magick'
   gem 'factory_bot_rails'
   
   gem 'faker'
+
+  gem 'capybara'
+
+  gem 'jquery-rails'
