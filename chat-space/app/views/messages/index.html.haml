@@ -20,8 +20,7 @@
           %p.message-list__message__user
             = message.user.name
           %p.message-list__message__date
-            = message.created_at
-            -# .strftime("%Y/%m/%d %H:%M")
+            = message.created_at.strftime("%Y/%m/%d %H:%M")
           %p.message-list__message__text
             = message.body
           = image_tag(message.image) if message.image.present?
