@@ -15,5 +15,7 @@ module ChatSpace
       g.test_framework false
     end
     config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+    config.i18n.default_locale = :ja
   end
 end

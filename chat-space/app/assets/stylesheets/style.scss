@@ -6,8 +6,6 @@ body {
   padding: 0;
 }
 
-
-
 .header {
   height: 100px;
   position: fixed;
@@ -78,13 +76,13 @@ body {
 }
 
 .right-contents {
-  height: calc(100% + 40px);
+  height: calc(100%);
   width: calc(100% - 300px);
   float: left;
 }
 
 .message-list{
-  height: calc(100% - 216px);
+  height: calc(100% - 176px);
   width: calc(100% - 80px);
   padding:46px 40px 40px;
   overflow: auto;

@@ -28,7 +28,7 @@
 
 
 @mixin group-list {
-  height: 100%;
+  height: calc(100% - 40px);
   background-color: #2f3e51;
   width: 260px;
   float: left;
