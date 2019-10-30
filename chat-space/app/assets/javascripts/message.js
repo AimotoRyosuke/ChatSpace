@@ -1,7 +1,7 @@
 $(function(){
   function appendMessage(data){
       let img_tag = (data.image.url ) ? `<img src="${data.image.url}">` : ("");
-      let message =  `<li class="message-list__message">
+      let message =  `<li class="message-list__message" data-id = ${data.id}>
                         <p class="message-list__message__user">
                           ${data.user}
                         </p>
@@ -13,32 +13,55 @@ $(function(){
                         </p>
                         ${img_tag}
                       </li>`
-      return message;
+      $(".message-list").append(message)
     
   }
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     let formData = new FormData(this);
     let href = window.location.href ;
-      $.ajax({
-        url : href,
-        type: "POST",
-        data: formData,
-        dataType: 'json',
-        processData: false,
-        contentType: false
-      })
-      .done(function(data){
-        let new_message = appendMessage(data);
-        $('.message-list').append(new_message)
-        $('#new_message')[0].reset();
-        $('.send-box__form__submit-btn').removeAttr('disabled');
-        $('.message-list').animate({ scrollTop: $('.message-list')[0].scrollHeight})
-      })
-      .fail(function(){
-        alert('メッセージを入力してください');
-        $('.send-box__form__submit-btn').removeAttr('disabled');
-      })
-    }) 
-  // }
+    $.ajax({
+      url : href,
+      type: "POST",
+      data: formData,
+      dataType: 'json',
+      processData: false,
+      contentType: false
+    })
+    .done(function(data){
+     appendMessage(data);
+      $('.message-list').append(new_message)
+      $('#new_message')[0].reset();
+      $('.send-box__form__submit-btn').removeAttr('disabled');
+      $('.message-list').animate({ scrollTop: $('.message-list')[0].scrollHeight})
+    })
+    .fail(function(){
+      alert('メッセージを入力してください');
+      $('.send-box__form__submit-btn').removeAttr('disabled');
+    })
+  }) 
+
+  var reloadMessages = function() {
+    last_message_id = $('.message-list__message:last').data('id');
+    group_id = $('.group-field__name').data('group-id');
+    $.ajax({
+      url: `http://localhost:3000/groups/${group_id}/api/messages`,
+      type: 'get',
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      
+      messages.forEach(function(message) {
+        appendMessage(message);
+      });
+      $('.message-list').animate({ scrollTop: $('.message-list')[0].scrollHeight})
+    })
+    .fail(function() {
+      alert("自動更新を失敗しました。");
+    });
+  };
+  if(!($('.group-field__name').data('group-id') === undefined)) {
+    setInterval(reloadMessages, 5000);
+  }
 });
