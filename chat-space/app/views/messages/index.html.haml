@@ -1,7 +1,7 @@
 %header.header
   = render "share/user-field"
   .group-field
-    .group-field__name
+    .group-field__name{"data-group-id": "#{@group.id}"}
       = @group.name
     %ul.group-field__member-list__group
     %li.group-field__member-list__text Member：
@@ -14,14 +14,14 @@
   = render "share/group-list"
 
   .right-contents
-    %ul.message-list
+    %ul.message-list#message_list
       - @group.messages.each do |message|
-        %li.message-list__message
-          %p.message-list__message__user
+        %li.message-list__message{data: {id: "#{message.id}"}}
+          %p.message-list__message__user{data: {name: "#{message.user.name}"}}
             = message.user.name
-          %p.message-list__message__date
+          %p.message-list__message__date{data: {message_date: "#{message.created_at}"}}
             = message.created_at.strftime("%Y/%m/%d %H:%M")
-          %p.message-list__message__text
+          %p.message-list__message__text{data: {message_text: "#{message.body}"}}
             = message.body
           = image_tag(message.image) if message.image.present?
     
