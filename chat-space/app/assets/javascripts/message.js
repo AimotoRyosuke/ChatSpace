@@ -13,7 +13,7 @@ $(function(){
                         </p>
                         ${img_tag}
                       </li>`
-      return message;
+      $(".message-list").append(message)
     
   }
   $('#new_message').on('submit', function(e){
@@ -29,7 +29,7 @@ $(function(){
       contentType: false
     })
     .done(function(data){
-      let new_message = appendMessage(data);
+     appendMessage(data);
       $('.message-list').append(new_message)
       $('#new_message')[0].reset();
       $('.send-box__form__submit-btn').removeAttr('disabled');
@@ -42,22 +42,6 @@ $(function(){
   }) 
 
   var reloadMessages = function() {
-    function appendBuild(message) {
-    let img_tag = (message.image.url ) ? `<img src="${message.image.url}">` : ("");
-    let add_message =  `<li class="message-list__message" data-id = ${message.id}>
-                          <p class="message-list__message__user">
-                            ${message.user}
-                          </p>
-                          <p class="message-list__message__date">
-                            ${message.date}
-                          </p>
-                          <p class="message-list__message__text">
-                            ${message.body}
-                          </p>
-                          ${img_tag}
-                        </li>`  ;
-    $(".message-list").append(add_message)
-    }
     last_message_id = $('.message-list__message:last').data('id');
     group_id = $('.group-field__name').data('group-id');
     $.ajax({
@@ -67,14 +51,14 @@ $(function(){
       data: {id: last_message_id}
     })
     .done(function(messages) {
-      console.log('success');
+      
       messages.forEach(function(message) {
-        appendBuild(message);
+        appendMessage(message);
       });
       $('.message-list').animate({ scrollTop: $('.message-list')[0].scrollHeight})
     })
     .fail(function() {
-      console.log('error');
+      alert("自動更新を失敗しました。");
     });
   };
   if(!($('.group-field__name').data('group-id') === undefined)) {
