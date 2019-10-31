@@ -16,3 +16,4 @@ vendor/bundle
 # Ignore Byebug command history file.
 .byebug_history
 public/uploads/*
+config/secrets.yml

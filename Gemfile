@@ -84,3 +84,7 @@ group :production do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
 end
+
+gem 'fog-aws'
+
+gem "rails-observers"
