@@ -41,7 +41,7 @@ server '3.114.250.113' , user: "ec2-user", roles: %w{app db web}
 #
 # Global options
 # --------------
- ssh_options:, {
+ ssh_options: {
    port: 3000,
    keys: '~/.ssh/authorized_keys.pem',
    user: 'root',
