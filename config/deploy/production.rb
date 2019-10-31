@@ -3,7 +3,7 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-server '3.114.250.113' , user: "ec2-user", roles: %w{app db web}
+server '3.114.250.113' , user: "ec2-user", roles: %w{app db web},
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
@@ -45,7 +45,7 @@ server '3.114.250.113' , user: "ec2-user", roles: %w{app db web}
    port: 3000,
    keys: '~/.ssh/authorized_keys.pem',
    user: 'root',
-   forward_agent: true ,
+   forward_agent: true 
  }
 #
 # The server-based syntax can be used to override options:
