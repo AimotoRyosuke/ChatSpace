@@ -14,8 +14,12 @@ set :rbenv_type, :user
 set :rbenv_ruby, '2.5.1' #カリキュラム通りに進めた場合、2.5.1か2.3.1です
 
 # どの公開鍵を利用してデプロイするか
-set :ssh_options, auth_methods: ['publickey'],
-                  keys: ['~/.ssh/chat-space2.pem'] 
+set :ssh_options, {
+    forward_agent: true,
+    auth_methods: ['publickey'],
+    user: "root",
+    keys: ['~/.ssh/chat-space2.pem'] 
+}
 
 # プロセス番号を記載したファイルの場所
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
