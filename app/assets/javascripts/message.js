@@ -30,7 +30,7 @@ $(function(){
     })
     .done(function(data){
      appendMessage(data);
-      $('.message-list').append(new_message)
+      // $('.message-list').append(new_message)
       $('#new_message')[0].reset();
       $('.send-box__form__submit-btn').removeAttr('disabled');
       $('.message-list').animate({ scrollTop: $('.message-list')[0].scrollHeight})
