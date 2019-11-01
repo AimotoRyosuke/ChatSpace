@@ -41,12 +41,8 @@ server '3.114.250.113' , user: "ec2-user", roles: %w{app db web}
 #
 # Global options
 # --------------
- set :ssh_options, {
-   keys: '~/.ssh/ChatSpace2.pem',
-   user: 'root',
-   forward_agent: true ,
- }
-#
+ set :ssh_options,  keys: '~/.ssh/ChatSpace2.pem'
+ 
 # The server-based syntax can be used to override options:
 # ------------------------------------
 # server "example.com",
