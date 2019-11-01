@@ -24,7 +24,6 @@
           %p.message-list__message__text{data: {message_text: "#{message.body}"}}
             = message.body
           = image_tag(message.image) if message.image.present?
-    
     = form_for [@group, @message] do |f|
       .send-box
         .send-box__form
