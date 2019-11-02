@@ -56,7 +56,10 @@ $(function(){
       messages.forEach(function(message) {
         appendMessage(message);
       });
+      console.log(messages);
+      if(!(messages.length === 0)) {
       $('.message-list').animate({ scrollTop: $('.message-list')[0].scrollHeight})
+      }
     })
     .fail(function() {
       alert("自動更新を失敗しました。");
