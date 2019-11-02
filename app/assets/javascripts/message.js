@@ -22,6 +22,7 @@ $(function(){
     let href = window.location.href ;
     $.ajax({
       url : href,
+      
       type: "POST",
       data: formData,
       dataType: 'json',
@@ -43,7 +44,8 @@ $(function(){
 
   var reloadMessages = function() {
     last_message_id = $('.message-list__message:last').data('id');
-    href = window.location.href.replace(/messages/g , "api/messages")
+    href = 'api/messages'
+    // window.location.href.replace(/messages/g , "api/messages")
     group_id = $('.group-field__name').data('group-id');
     $.ajax({
       url: href,
@@ -56,7 +58,10 @@ $(function(){
       messages.forEach(function(message) {
         appendMessage(message);
       });
+      console.log(messages);
+      if(!(messages.length === 0)) {
       $('.message-list').animate({ scrollTop: $('.message-list')[0].scrollHeight})
+      }
     })
     .fail(function() {
       alert("自動更新を失敗しました。");
