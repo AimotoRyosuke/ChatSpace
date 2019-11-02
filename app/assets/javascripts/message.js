@@ -22,6 +22,7 @@ $(function(){
     let href = window.location.href ;
     $.ajax({
       url : href,
+      
       type: "POST",
       data: formData,
       dataType: 'json',
@@ -43,7 +44,8 @@ $(function(){
 
   var reloadMessages = function() {
     last_message_id = $('.message-list__message:last').data('id');
-    href = window.location.href.replace(/messages/g , "api/messages")
+    href = 'api/messages'
+    // window.location.href.replace(/messages/g , "api/messages")
     group_id = $('.group-field__name').data('group-id');
     $.ajax({
       url: href,
