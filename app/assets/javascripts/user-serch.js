@@ -54,7 +54,6 @@ $(function() {
     users.forEach(function(user){
       $(selected_users.push($(user).data("user_id")))
     });
-    console.log(selected_users)
     $.ajax({
       type: "GET",
       url: "/users",
