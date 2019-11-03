@@ -7,7 +7,6 @@ $(function() {
       </div>
     `;
     $("#user-search-result").append(html);
-    
   }
 
   function addNoUser() {
@@ -20,15 +19,15 @@ $(function() {
   }
   function addDeleteUser(name, id) {
     let html = `
-    <div class="chat-group-user clearfix" id="${id}">
-      <p class="chat-group-user__name">${name}</p>
+    <div class="chat-group-user chat-group-user-${id} clearfix" id="${id}">
+      <p class="selected-user chat-group-user__name" data-user_id="${id}">${name}</p>
       <div class="chat-group-user-remove chat-group-user__btn chat-group-user__btn--remove" data-user-id="${id}" data-user-name="${name}">削除</div>
     </div>`;
     $(".js-add-user").append(html);
   }
   function addMember(userId) {
     let html = `<input name="group[user_ids][]", type="hidden", value="${userId}" id="group_user_ids_${userId}" />`;
-    $(`.js-chat-member`).append(html);
+    $(`.chat-group-user-${userId}`).append(html);
   }
 
   $(document).on("click", ".chat-group-user__btn--add", function() {
@@ -47,12 +46,19 @@ $(function() {
       .remove();
   });
 
+
   $("#user-search-field").on("keyup", function() {
     let input = $("#user-search-field").val();
+    let users = $.makeArray($('.selected-user'));
+    let selected_users = [];
+    users.forEach(function(user){
+      $(selected_users.push($(user).data("user_id")))
+    });
+    console.log(selected_users)
     $.ajax({
       type: "GET",
       url: "/users",
-      data: { keyword: input },
+      data: { keyword: input,ids: selected_users},
       dataType: "json"
     })
       .done(function(users) {

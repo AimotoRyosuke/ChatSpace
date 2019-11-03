@@ -7,9 +7,9 @@ class User < ApplicationRecord
   has_many :messages
   has_many :groups_users
 
-  def self.search(input, id)
+  def self.search(input, ids)
     return nil if input == ""
-    User.where(['name LIKE ?', "%#{input}%"] ).where.not(id: id).limit(10)
+    User.where(['name LIKE ?', "%#{input}%"] ).where.not(id: ids).limit(10)
   end
 
 end
