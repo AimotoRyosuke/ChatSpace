@@ -31,7 +31,6 @@ $(function(){
     })
     .done(function(data){
      appendMessage(data);
-      // $('.message-list').append(new_message)
       $('#new_message')[0].reset();
       $('.send-box__form__submit-btn').removeAttr('disabled');
       $('.message-list').animate({ scrollTop: $('.message-list')[0].scrollHeight})
@@ -53,12 +52,10 @@ $(function(){
       dataType: 'json',
       data: {id: last_message_id}
     })
-    .done(function(messages) {
-      
+    .done(function(messages) {     
       messages.forEach(function(message) {
         appendMessage(message);
       });
-      console.log(messages);
       if(!(messages.length === 0)) {
       $('.message-list').animate({ scrollTop: $('.message-list')[0].scrollHeight})
       }
