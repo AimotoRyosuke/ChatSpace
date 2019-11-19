@@ -20,9 +20,10 @@ $(function(){
     e.preventDefault();
     let formData = new FormData(this);
     let href = window.location.href ;
+    console.log(href)
+    console.log(formData)
     $.ajax({
       url : href,
-      
       type: "POST",
       data: formData,
       dataType: 'json',
